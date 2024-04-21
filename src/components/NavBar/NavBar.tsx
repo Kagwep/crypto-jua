@@ -56,6 +56,12 @@ export default function NavBar() {
           to={`/${PROTECTED_DATA}`}
           className="-mx-2 flex h-full items-center p-2"
         >
+          My Subscriptions
+        </NavLink>
+        <NavLink
+          to={`/${PROTECTED_DATA}`}
+          className="-mx-2 flex h-full items-center p-2"
+        >
           My Protected Data
         </NavLink>
         <NavLink
