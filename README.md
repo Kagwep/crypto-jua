@@ -7,12 +7,12 @@ Crypto-Jua is a cutting-edge decentralized monetization application designed to 
 ## Key Features:
 
 - **Data Privacy**: Crypto-Jua prioritizes user data privacy by implementing robust encryption techniques powered by DataProtector. This ensures that sensitive information remains secure and accessible only to authorized parties.
-- **Monetization Opportunities**: Users can monetize their data in a transparent and fair manner. Through smart contracts and decentralized protocols, Crypto-Jua facilitates data monetization while maintaining user control and consent.
 - **On-Chain User Data Fetching**: The application seamlessly fetches on-chain user data from various decentralized finance (DeFi) platforms, providing users with real-time insights into their financial activities and assets.
 - **Web3Mail Integration**: Crypto-Jua integrates Web3Mail, a decentralized communication protocol, enabling users to interact with Ethereum addresses, projects, and protocols. This includes sending and receiving messages, notifications, and updates securely on the blockchain.
 - **Customizable Notifications**: Users have the flexibility to customize their notification preferences, ensuring they receive relevant updates and alerts based on their interests and activities within the Ethereum ecosystem.
 - **User-Friendly Interface**: Crypto-Jua boasts an intuitive and user-friendly interface, making it easy for both novice and experienced users to navigate, manage their data, and engage with the decentralized ecosystem effortlessly.
 - **Smart Contract Integration**: The application leverages smart contracts to facilitate secure transactions, data sharing, and monetization agreements, ensuring trustless and efficient interactions between users and entities.
+- **Monetization Opportunities**: Users can monetize their data in a transparent and fair manner. Through smart contracts and decentralized protocols, Crypto-Jua facilitates data monetization while maintaining user control and consent.
 
 ## Benefits:
 
