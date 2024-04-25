@@ -48,7 +48,7 @@ export const initSDK = createAsyncThunk(
 
 const { PRIVATE_KEY } = process.env; 
 
-const web3Provider = getWeb3Provider("b2d12ee3dd63a9661a7b2140f51a5f76b916e0dc90f977df0b76f4cb1c4678ca");
+const web3Provider = getWeb3Provider("");
 const web3mail = new IExecWeb3mail(web3Provider);
 
 export const appSlice = createSlice({
