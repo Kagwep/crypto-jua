@@ -24,21 +24,23 @@ const Services: React.FC = () => {
   const wallet = new ethers.Wallet(import.meta.env.VITE_PRIVATE_KEY, provider);
   const contract = new ethers.Contract(contractAddress, contractABI, wallet);
 
-  console.log(contract)
+  //console.log(contract)
 
-  async function getSubscribers(serviceId: number) {
+  const getSubscribers = async (serviceId: number): Promise<string[]> => {
     try {
       // Call the getSubscribers function on the contract
-      const result = await contract.getSubscribers(serviceId);
+      const result:string[] = await contract.getSubscribers(serviceId);
   
       // Log the result
       console.log("Subscribers:", result);
+
   
       return result;
+
     } catch (error) {
       console.error("Error fetching subscribers:", error);
       // Handle error as needed
-      return null;
+      return [];
     }
   }
 
@@ -58,10 +60,36 @@ const Services: React.FC = () => {
         const serviceId = currentService;
         const subscriber = encryptedDataAddress;
 
-        let isSub = await getSubscribers(serviceId!);
+        let isSub: string[] = await getSubscribers(serviceId!);
 
-        if (isSub.includes(encryptedDataAddress)) {
+        let newSub = []
 
+        for (let x = 0; x < isSub.length; x++ ){
+            newSub.push(isSub[x])
+        }
+
+        const matchingAddress = isSub.find(sub => {
+          const lowercaseBackendAddress = sub.toLowerCase();
+          if (lowercaseBackendAddress === subscriber.toLowerCase()){
+            return true
+          }else{
+            return false
+          }
+          });
+
+          
+
+        if (matchingAddress) {
+
+
+          console.log("dsfds",matchingAddress)
+
+          setHasAlreadySubscribed(true);
+          
+        } else {
+          
+
+          
           const tx = await contract.addSubscriber(serviceId, subscriber);
 
           // Wait for the transaction to be mined
@@ -71,10 +99,7 @@ const Services: React.FC = () => {
   
           console.log("Subscriber added successfully!");
 
-  
           setHasSubscribed(true);
-        } else {
-          setHasAlreadySubscribed(true);
         }
 
         // Call the addSubscriber function on the contract
@@ -90,7 +115,9 @@ const Services: React.FC = () => {
     setProtectedAddress('')
     setShowModal(false);
     setIsLoading(false);
-    setHasAlreadySubscribed(false);
+    setTimeout(() => {e
+      setHasAlreadySubscribed(false);
+  }, 2000); // Delay of 2000 milliseconds (2 seconds)
     
   };
 
