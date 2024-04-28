@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { ethers } from 'ethers';
 import servicesContract from "@/abi/Cryptojua.json"
 
+
 const contractABI = servicesContract.abi;
 
 const contractAddress = "0xD6595b761aD0F6a0E332F92E29ccd342ee757DB8";
@@ -14,24 +15,82 @@ const Services: React.FC = () => {
   const [protectedAddress, setProtectedAddress] = useState<string>("");
   const [address, setAddress] = useState('');
   const [isValid, setIsValid] = useState(true);
+  const [hasSubscribed, setHasSubscribed] = useState(false);
+  const [hasFailedSubscribed, setHasFailedSubscribed] = useState(false);
+  const [isSubscribed, setHasAlreadySubscribed] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const provider = new ethers.JsonRpcProvider(import.meta.env.VITE_INFURA_URL);
   const wallet = new ethers.Wallet(import.meta.env.VITE_PRIVATE_KEY, provider);
   const contract = new ethers.Contract(contractAddress, contractABI, wallet);
 
+  console.log(contract)
+
+  async function getSubscribers(serviceId: number) {
+    try {
+      // Call the getSubscribers function on the contract
+      const result = await contract.getSubscribers(serviceId);
+  
+      // Log the result
+      console.log("Subscribers:", result);
+  
+      return result;
+    } catch (error) {
+      console.error("Error fetching subscribers:", error);
+      // Handle error as needed
+      return null;
+    }
+  }
+
   const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
     setProtectedAddress(e.target.value);
   };
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const encryptedDataAddress = protectedAddress;
     validateAddress(encryptedDataAddress);
+    
     if(isValid){
-      console.log(`Subscribed to ${currentService} with data:`, encryptedDataAddress);
+        try{
+            // Disable the submit button and show loading state
+        setIsLoading(true);
+        const serviceId = currentService;
+        const subscriber = encryptedDataAddress;
+
+        let isSub = await getSubscribers(serviceId!);
+
+        if (isSub.includes(encryptedDataAddress)) {
+
+          const tx = await contract.addSubscriber(serviceId, subscriber);
+
+          // Wait for the transaction to be mined
+          await tx.wait();
+  
+          // Transaction successful, do any further processing if needed
+  
+          console.log("Subscriber added successfully!");
+
+  
+          setHasSubscribed(true);
+        } else {
+          setHasAlreadySubscribed(true);
+        }
+
+        // Call the addSubscriber function on the contract
+
+
+      } catch (error) {
+        console.error("Error adding subscriber:", error);
+        // Handle error as needed
+        setHasFailedSubscribed(true);
+        setIsLoading(false);
+      }
     }
     setProtectedAddress('')
     setShowModal(false);
+    setIsLoading(false);
+    setHasAlreadySubscribed(false);
     
   };
 
@@ -68,26 +127,41 @@ const Services: React.FC = () => {
           <span className="block sm:inline"> Please enter a valid Protected Data address.</span>
         </div>
       )}
+      {hasSubscribed && (
+        <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded relative" role="alert">
+          <strong className="font-bold">Subscription Successful!</strong>
+        </div>
+      )}
+      {hasFailedSubscribed && (
+        <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded relative" role="alert">
+          <strong className="font-bold">oops! something went wrong.</strong>
+        </div>
+      )}
+      {isSubscribed && (
+        <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded relative" role="alert">
+          <strong className="font-bold">You are already a subscriber!</strong>
+        </div>
+      )}
       <h2 className="text-2xl font-bold text-center mb-6">Explore Our Services</h2>
       <div className="space-y-4">
         {[
           {
-            "id": 1,
+            "id": 7,
             "name": "Price Alerts",
             "description": "Set and receive alerts when cryptocurrency prices hit your targeted thresholds. Make informed decisions based on timely, accurate market data."
           },
           {
-            "id": 2,
+            "id": 4,
             "name": "Exchange Rates",
             "description": "Stay updated with the latest exchange rates for cryptocurrencies. Keep track of market dynamics and currency conversion rates in real time."
           },
           {
-            "id": 3,
+            "id": 5,
             "name": "Crypto News",
             "description": "Get the latest news and developments in the cryptocurrency world. Stay informed with real-time updates on events impacting the crypto market."
           },
           {
-            "id": 4,
+            "id": 6,
             "name": "Airdrops",
             "description": "Receive notifications about upcoming airdrops and claim opportunities. Be the first to know when new tokens are distributed to the community."
           }
@@ -115,7 +189,9 @@ const Services: React.FC = () => {
             <form onSubmit={handleSubmit}>
               <label className="block text-sm font-bold my-2">Protected Data Address:</label>
               <input type="text" name="protectedData" value={protectedAddress} onChange={handleInputChange } className="w-full p-2 border border-gray-400 rounded" />
-              <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3">Submit</button>
+              <button type="submit" className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`} disabled={isLoading}>
+                {isLoading ? 'Submitting...' : 'Submit' }
+              </button>
             </form>
           </div>
         </div>

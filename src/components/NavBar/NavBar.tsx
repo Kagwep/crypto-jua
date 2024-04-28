@@ -19,18 +19,7 @@ export default function NavBar() {
   const [tabIndicatorLeft, setTabIndicatorLeft] = useState('');
   const [tabIndicatorWidth, setTabIndicatorWidth] = useState('');
 
-  useEffect(() => {
-    // FIRST tab is selected
-    if (location.pathname.startsWith(`/${PROTECTED_DATA}`)) {
-      setTabIndicatorLeft(myProtectedDataLeft);
-      setTabIndicatorWidth(myProtectedDataWidth);
-    }
-    // SECOND tab is selected
-    else {
-      setTabIndicatorLeft(sendEmailLeft);
-      setTabIndicatorWidth(sendEmailWidth);
-    }
-  }, [location]);
+
 
   return (
     <header className="dark flex h-[64px] items-center bg-green-600 px-8 text-white">
@@ -48,25 +37,19 @@ export default function NavBar() {
       <div className="relative ml-20 flex h-full items-center gap-x-8 pr-3">
        <NavLink
           to={`/${SERVICES}`}
-          className="-mx-2 flex h-full items-center p-2"
+          className="-mx-2 flex h-full items-center p-2 hover:bg-green-700"
         >
           Services
         </NavLink>
         <NavLink
           to={`/${PROTECTED_DATA}`}
-          className="-mx-2 flex h-full items-center p-2"
-        >
-          My Subscriptions
-        </NavLink>
-        <NavLink
-          to={`/${PROTECTED_DATA}`}
-          className="-mx-2 flex h-full items-center p-2"
+          className="-mx-2 flex h-full items-center p-2 hover:bg-green-700"
         >
           My Protected Data
         </NavLink>
         <NavLink
           to={`/${SEND_EMAIL}`}
-          className="-mx-2 flex h-full items-center p-2"
+          className="-mx-2 flex h-full items-center p-2 hover:bg-green-700"
         >
           Send Email
         </NavLink>

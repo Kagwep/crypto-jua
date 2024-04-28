@@ -44,13 +44,6 @@ export const initSDK = createAsyncThunk(
 );
 
 
-// import { IExecWeb3mail, getWeb3Provider } from "@iexec/web3mail";
-
-const { PRIVATE_KEY } = process.env; 
-
-const web3Provider = getWeb3Provider("");
-const web3mail = new IExecWeb3mail(web3Provider);
-
 export const appSlice = createSlice({
   name: 'app',
   initialState: initialState,
@@ -250,7 +243,7 @@ export const homeApi = api.injectEndpoints({
     sendEmail: builder.mutation<SendEmailResponse | null, SendEmailParams>({
       queryFn: async (args) => {
         try {
-          const sendEmailResponse = await web3mail?.sendEmail(args);
+          const sendEmailResponse = await iExecWeb3Mail?.sendEmail(args);
           return { data: sendEmailResponse || null };
         } catch (err: any) {
           const errorData = buildErrorData(err);

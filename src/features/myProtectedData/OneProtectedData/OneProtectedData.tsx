@@ -144,44 +144,6 @@ export default function OneProtectedData() {
           </Button>
         </div>
 
-        <DocLink className="mt-20">
-          dataprotector-sdk / Methods called in this page:
-          <br />
-          <div className="mt-1 pl-10">
-            -{' '}
-            <a
-              href="https://tools.docs.iex.ec/tools/dataprotector/methods/fetchgrantedaccess"
-              target="_blank"
-              rel="noreferrer"
-              className="text-link hover:underline"
-            >
-              fetchGrantedAccess()
-            </a>
-          </div>
-          <div className="mt-1 pl-10">
-            -{' '}
-            <a
-              href="https://tools.docs.iex.ec/tools/dataprotector/methods/grantaccess"
-              target="_blank"
-              rel="noreferrer"
-              className="text-link hover:underline"
-            >
-              grantAccess()
-            </a>
-          </div>
-          <div className="mt-1 pl-10">
-            -{' '}
-            <a
-              href="https://tools.docs.iex.ec/tools/dataprotector/methods/revokeoneaccess"
-              target="_blank"
-              rel="noreferrer"
-              className="text-link hover:underline"
-            >
-              revokeOneAccess()
-            </a>
-          </div>
-        </DocLink>
-
         {modalOpen && (
           <GrantAccessModal
             protectedData={ProtectedDataId as string}

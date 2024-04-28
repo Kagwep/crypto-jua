@@ -171,18 +171,6 @@ export default function SendEmailForm() {
           </Button>
         </div>
       </Box>
-
-      <DocLink className="mt-20">
-        web3mail-sdk / Method called in this page:{' '}
-        <a
-          href="https://tools.docs.iex.ec/tools/web3mail/methods/sendemail"
-          target="_blank"
-          rel="noreferrer"
-          className="text-link hover:underline"
-        >
-          sendEmail()
-        </a>
-      </DocLink>
     </div>
   );
 }
