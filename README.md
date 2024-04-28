@@ -57,3 +57,34 @@ Crypto Jua is continuously evolving. Here are some potential enhancements for fu
 
 - **Improved User Interface**: Enhance the user experience with a more intuitive and user-friendly interface.
 
+
+## Running Crypto Jua Locally
+
+To run Crypto Jua on your local machine, follow these steps:
+
+1. Clone the repository from GitHub:
+
+```bash
+git clone https://github.com/yourusername/cryptojua.git
+```
+
+2. Navigate to the project directory:
+
+```
+cd cryptojua
+
+```
+
+3. Install dependencies using npm:
+
+```
+npm install
+
+```
+
+4.  Start the development server:
+
+```
+npm run dev
+
+```
