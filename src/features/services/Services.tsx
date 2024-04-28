@@ -20,8 +20,8 @@ const Services: React.FC = () => {
   const [isSubscribed, setHasAlreadySubscribed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const provider = new ethers.JsonRpcProvider(import.meta.env.INFURA_URL);
-  const wallet = new ethers.Wallet(import.meta.env.PRIVATE_KEY, provider);
+  const provider = new ethers.JsonRpcProvider(import.meta.env.VITE_INFURA_URL);
+  const wallet = new ethers.Wallet(import.meta.env.VITE_PRIVATE_KEY, provider);
   const contract = new ethers.Contract(contractAddress, contractABI, wallet);
 
   console.log(contract)
