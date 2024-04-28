@@ -16,6 +16,18 @@ Crypto Jua is a decentralized application (dApp) built on iExec Web3Mail technol
 
 3. **SendMail**: The SendMail feature allows Crypto Jua to send notifications securely to subscribed users. Users receive notifications directly to their mails via Web3Mail.
 
+## Getting Your Protected Data Address to Receive Notifications
+
+Before proceeding, ensure you have your protected data address ready to receive notifications.
+
+1. Head to the "Protected Data" section of Crypto Jua.
+2. Protect your email data and give it a name you'll remember.
+3. Authorize this user: `0x692f81a58d9351829b2c96a4e23d8cc0e4b3919c`.
+4. Set the access number to determine the frequency of notifications you wish to receive.
+5. Note the Data Protected Address provided.
+6. Use this Data Protected Address to subscribe to the services that interest you.
+
+
 ## Usage
 
 To start using Crypto Jua, follow these steps:
