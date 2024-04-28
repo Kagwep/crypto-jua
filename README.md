@@ -27,6 +27,8 @@ Before proceeding, ensure you have your protected data address ready to receive 
 5. Note the Data Protected Address provided.
 6. Use this Data Protected Address to subscribe to the services that interest you.
 
+![protected data address](https://res.cloudinary.com/dufdzujik/image/upload/v1714320837/mhoilkq9msruwujsot72.png)
+
 
 ## Usage
 
