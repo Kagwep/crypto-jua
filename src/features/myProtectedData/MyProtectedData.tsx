@@ -98,6 +98,9 @@ export default function MyProtectedData() {
                 Confidentially manage your protected data. Easily create,
                 review, authorize, and revoke access.
               </p>
+              <p>
+                Authorize this user if need to receive notfications of any service  <strong> 0x692f81a58d9351829b2c96a4e23d8cc0e4b3919c </strong>
+              </p>
             </div>
             <NewProtectedDataButton />
           </div>
