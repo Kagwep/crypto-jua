@@ -36,7 +36,8 @@ To start using Crypto Jua, follow these steps:
 
 Crypto Jua is continuously evolving. Here are some potential enhancements for future versions:
 
-- **Personalization**: Implement personalized notifications based on user preferences and interactions within the dApp.
+- **Personalization and Premium Services**: Implement personalized notifications based on user preferences and interactions within the dApp. Introduce premium subscription tiers offering advanced personalization options and exclusive features.
+
 
 - **Expanded Service Offerings**: Add more services and options for users to subscribe to, catering to a wider range of DeFi interests and activities.
 
